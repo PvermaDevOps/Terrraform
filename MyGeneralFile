@@ -1,1 +1,716 @@
 
+
+
+
+Claim offer
+after installing git what are basic cheat sheet command to configure the git initialise the git source the branch fork the branch and so on. give me complete guide of most used command with examples to work with git from initial phase while dont have git knowledge
+
+Git Beginner-to-Working Cheat Sheet (Practical DevOps Style)
+Git is basically your time machine + collaboration system for code and infrastructure.
+
+As a Cloud/DevOps/SRE engineer, Git becomes part of daily life:
+
+Terraform code
+
+Kubernetes YAMLs
+
+Python scripts
+
+CI/CD pipelines
+
+Helm charts
+
+Documentation
+
+Automation scripts
+
+You don’t need to memorize everything. Learn the workflow.
+
+1. Install Git
+Verify Git Installation
+git --version
+Example:
+
+git version 2.49.0
+2. First-Time Git Configuration
+This sets your identity globally.
+
+Configure Username
+git config --global user.name "Aryan Singh"
+Configure Email
+git config --global user.email "aryan@example.com"
+Verify Configuration
+git config --list
+3. Create Your First Git Project
+Create Folder
+mkdir myproject
+cd myproject
+4. Initialize Git Repository
+This creates .git hidden directory.
+
+git init
+Output:
+
+Initialized empty Git repository
+5. Check Git Status
+MOST USED COMMAND.
+
+git status
+Shows:
+
+modified files
+
+new files
+
+staged files
+
+branch info
+
+6. Create Files
+Example:
+
+touch app.py
+touch README.md
+Or:
+
+echo "Hello Git" > README.md
+7. Add Files to Staging Area
+Add Single File
+git add app.py
+Add All Files
+git add .
+Think:
+
+Working directory → Staging area → Commit
+
+8. Commit Changes
+Save snapshot/version.
+
+git commit -m "Initial commit"
+Example:
+
+git commit -m "Added terraform networking module"
+9. View Commit History
+git log
+Short format:
+
+git log --oneline
+10. Branch Basics
+Branch = separate workspace.
+
+Main branch:
+
+main
+Older systems:
+
+master
+11. Check Current Branch
+git branch
+Current branch has *
+
+Example:
+
+* main
+12. Create New Branch
+Create Branch
+git branch dev
+13. Switch Branch
+git checkout dev
+Modern way:
+
+git switch dev
+14. Create + Switch Branch Together
+MOST USED.
+
+git checkout -b feature-login
+Modern:
+
+git switch -c feature-login
+15. Merge Branch
+Go to main branch:
+
+git checkout main
+Merge:
+
+git merge feature-login
+16. Delete Branch
+git branch -d feature-login
+Force delete:
+
+git branch -D feature-login
+17. Connect GitHub Repository
+Create repo on GitHub
+
+Then connect local repo:
+
+git remote add origin https://github.com/username/myproject.git
+Verify:
+
+git remote -v
+18. Push Code to GitHub
+First push:
+
+git push -u origin main
+Later:
+
+git push
+19. Clone Existing Repository
+MOST COMMON IN COMPANIES.
+
+git clone https://github.com/username/project.git
+Example:
+
+git clone https://github.com/kubernetes/kubernetes.git
+This downloads complete repo.
+
+20. Pull Latest Changes
+Get latest code from remote.
+
+git pull
+Specific:
+
+git pull origin main
+21. Fetch Changes
+Downloads changes WITHOUT merging.
+
+git fetch
+Good for checking updates safely.
+
+22. Check Differences
+Before Staging
+git diff
+After Staging
+git diff --staged
+23. Undo Changes
+Undo Unstaged Changes
+git checkout -- app.py
+Modern:
+
+git restore app.py
+24. Remove File from Staging
+git restore --staged app.py
+25. Rename Branch
+git branch -m oldname newname
+26. Remove Files
+git rm test.txt
+Commit after removing:
+
+git commit -m "Removed unused file"
+27. Ignore Files (.gitignore)
+Create:
+
+touch .gitignore
+Example:
+
+*.log
+*.tmp
+.env
+__pycache__/
+terraform.tfstate
+VERY IMPORTANT in DevOps.
+
+Never commit:
+
+passwords
+
+secrets
+
+tokens
+
+private keys
+
+tfstate with secrets
+
+28. Stash Changes (Temporary Save)
+Useful when switching tasks.
+
+Save:
+
+git stash
+Restore:
+
+git stash pop
+Check stash:
+
+git stash list
+29. Reset Commits
+Soft Reset
+Keep files:
+
+git reset --soft HEAD~1
+Hard Reset
+DANGER:
+
+git reset --hard HEAD~1
+Deletes changes permanently.
+
+30. See Remote Repository
+git remote -v
+31. Tags (Versioning)
+git tag v1.0
+Push tags:
+
+git push origin v1.0
+Used in:
+
+releases
+
+CI/CD
+
+deployments
+
+32. Fork vs Clone
+Fork
+Copy someone else's repo into YOUR GitHub account.
+
+Used for:
+
+open-source contribution
+
+Done on GitHub UI.
+
+Clone
+Download repo locally.
+
+git clone <repo-url>
+33. Real Corporate Workflow
+Typical DevOps flow:
+
+git clone repo
+git checkout -b feature/terraform-network
+# make changes
+git add .
+git commit -m "Added VNET and subnet module"
+git push origin feature/terraform-network
+Then:
+
+Create Pull Request (PR)
+
+Team reviews
+
+Merge to main
+
+34. Git Pull Request (PR) Concept
+PR = Request to merge code.
+
+Workflow:
+
+Developer Branch
+       ↓
+Push Code
+       ↓
+Create Pull Request
+       ↓
+Review + Approval
+       ↓
+Merge into Main
+Very important in:
+
+DevOps
+
+GitOps
+
+CI/CD
+
+Platform Engineering
+
+35. Most Important Daily Commands
+TOP 15 YOU WILL USE DAILY
+git status
+git add .
+git commit -m "message"
+git pull
+git push
+git clone
+git checkout branch
+git checkout -b branch
+git branch
+git merge
+git log --oneline
+git diff
+git stash
+git fetch
+git remote -v
+36. Recommended Beginner Practice
+Create a small lab:
+
+Project
+git-lab/
+ ├── terraform/
+ ├── kubernetes/
+ ├── python/
+ └── README.md
+Practice:
+
+commits
+
+branching
+
+merging
+
+push/pull
+
+conflicts
+
+Break things intentionally. Git learning happens during mistakes. Every DevOps engineer has at least one “why did I hard reset production IaC repo” memory. Preferably only one.
+
+37. Git + DevOps Important Concepts
+Learn next:
+
+GitHub Actions
+
+GitLab CI/CD
+
+Branching strategy
+
+Merge conflicts
+
+Rebase
+
+Cherry-pick
+
+GitOps
+
+Protected branches
+
+Semantic versioning
+
+Monorepo vs multirepo
+
+38. Beginner Learning Order
+Week 1
+Learn:
+
+init
+
+add
+
+commit
+
+push
+
+pull
+
+clone
+
+Week 2
+Learn:
+
+branch
+
+merge
+
+conflicts
+
+stash
+
+reset
+
+Week 3
+Learn:
+
+PR workflow
+
+GitHub
+
+GitLab
+
+CI/CD integration
+
+39. Best Free Git Learning Resources
+Git Official Documentation
+
+GitHub Skills
+
+Atlassian Git Tutorials
+
+40. Golden Rule
+Before any dangerous command:
+
+git status
+This single habit saves careers.
+
+
+how to configure our github account to the git 
+
+Configure Your GitHub Account with Git (Complete Beginner Setup)
+This is the setup every engineer does after installing Git.
+
+Goal:
+
+Your Laptop ↔ Git ↔ GitHub
+You need:
+
+Git installed
+
+GitHub account
+
+Authentication setup
+
+STEP 1 — Create GitHub Account
+Go to:
+
+GitHub Official Website
+
+Create account if not already created.
+
+STEP 2 — Configure Git Identity
+This tells Git who you are.
+
+Set Username
+git config --global user.name "Aryan Singh"
+Set Email
+Use SAME email as GitHub account.
+
+git config --global user.email "your-email@gmail.com"
+STEP 3 — Verify Configuration
+git config --list
+You should see:
+
+user.name=Aryan Singh
+user.email=your-email@gmail.com
+STEP 4 — Generate SSH Key (BEST METHOD)
+GitHub no longer likes password authentication for Git operations.
+
+Use SSH keys.
+
+Check Existing SSH Keys
+Linux:
+
+ls -al ~/.ssh
+Windows Git Bash:
+
+ls -al /c/Users/YOUR_USERNAME/.ssh
+If no keys exist, generate one.
+
+STEP 5 — Generate New SSH Key
+Recommended:
+
+ssh-keygen -t ed25519 -C "your-email@gmail.com"
+Older systems:
+
+ssh-keygen -t rsa -b 4096 -C "your-email@gmail.com"
+STEP 6 — Press Enter Through Prompts
+Example:
+
+Enter file in which to save the key:
+/home/aryan/.ssh/id_ed25519
+Press ENTER.
+
+Optional passphrase:
+
+Enter passphrase:
+You can:
+
+set passphrase (more secure)
+
+or press Enter
+
+STEP 7 — Start SSH Agent
+Linux/macOS:
+
+eval "$(ssh-agent -s)"
+STEP 8 — Add SSH Key
+ssh-add ~/.ssh/id_ed25519
+STEP 9 — Copy Public SSH Key
+Linux:
+
+cat ~/.ssh/id_ed25519.pub
+Windows Git Bash:
+
+cat /c/Users/YOUR_USERNAME/.ssh/id_ed25519.pub
+Copy COMPLETE output.
+
+Looks like:
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI.... your-email@gmail.com
+STEP 10 — Add SSH Key to GitHub
+Go to:
+
+GitHub SSH Settings
+
+Then:
+
+Click "New SSH Key"
+
+Give title:
+
+My Laptop
+Paste copied key
+
+Save
+
+STEP 11 — Test Connection
+ssh -T git@github.com
+Expected:
+
+Hi username! You've successfully authenticated.
+Done. Your laptop now trusts GitHub.
+
+STEP 12 — Clone Repository Using SSH
+Instead of HTTPS:
+
+https://github.com/user/repo.git
+Use SSH:
+
+git@github.com:user/repo.git
+Example:
+
+git clone git@github.com:aryan/myproject.git
+STEP 13 — Push Your First Code
+Create Folder
+mkdir demo
+cd demo
+Initialize Git
+git init
+Create File
+echo "Hello GitHub" > README.md
+Add File
+git add .
+Commit
+git commit -m "Initial commit"
+STEP 14 — Create Repository on GitHub
+Go to:
+
+Create New GitHub Repository
+
+Create:
+
+demo
+DO NOT:
+
+initialize README
+
+add gitignore
+
+add license
+
+Because local repo already exists.
+
+STEP 15 — Connect Local Repo to GitHub
+Copy SSH URL from GitHub.
+
+Example:
+
+git remote add origin git@github.com:aryan/demo.git
+Verify:
+
+git remote -v
+STEP 16 — Push Code
+git branch -M main
+git push -u origin main
+Done.
+
+Your code is now on GitHub.
+
+HTTPS METHOD (Alternative)
+If SSH feels difficult initially.
+
+Clone Using HTTPS
+git clone https://github.com/user/repo.git
+During push:
+GitHub asks authentication.
+
+Now GitHub uses:
+
+Personal Access Token (PAT)
+NOT passwords.
+
+Create GitHub Personal Access Token
+Go to:
+
+GitHub Tokens Settings
+
+Generate token:
+
+repo access
+
+expiration
+
+Use token as password.
+
+Recommended for DevOps Engineers
+Use:
+
+SSH Authentication
+Because:
+
+cleaner
+
+secure
+
+automation friendly
+
+CI/CD compatible
+
+no repeated login
+
+MOST COMMON GITHUB WORKFLOW
+Clone Existing Repo
+git clone git@github.com:company/project.git
+Create Branch
+git checkout -b feature/k8s-upgrade
+Make Changes
+vim deployment.yaml
+Commit
+git add .
+git commit -m "Updated Kubernetes deployment"
+Push
+git push origin feature/k8s-upgrade
+Then:
+
+Create Pull Request on GitHub
+
+Review
+
+Merge
+
+Useful GitHub Commands
+Show Remote Repo
+git remote -v
+Change Remote URL
+git remote set-url origin git@github.com:user/repo.git
+Check SSH Connection
+ssh -T git@github.com
+Important DevOps Best Practices
+Never Push:
+passwords
+
+secrets
+
+kubeconfig
+
+private keys
+
+.env
+
+terraform state with secrets
+
+Use .gitignore
+
+Example:
+
+*.pem
+.env
+terraform.tfstate
+kubeconfig
+Verify Everything is Working
+Check Git
+git --version
+Check GitHub SSH
+ssh -T git@github.com
+Check Remote
+git remote -v
+Check Current Branch
+git branch
+Your Next Step After This
+Practice this flow repeatedly:
+
+git clone
+git checkout -b new-branch
+git add .
+git commit -m "message"
+git push
+That workflow alone covers a huge chunk of real-world DevOps daily operations.
+
+
